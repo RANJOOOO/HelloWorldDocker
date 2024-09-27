@@ -1,9 +1,5 @@
-version: '3.8'
-
 services:
-  gradle-app:
+  my-java-app:   # Name of the service
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "8080:8080"

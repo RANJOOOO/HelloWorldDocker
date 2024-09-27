@@ -1,15 +1,15 @@
-FROM gradle:jdk21
+# Use the official Gradle image to build the Java project
+FROM gradle:jdk21 AS build
 
-USER root
+# Set the working directory inside the container
 WORKDIR /app
 
-COPY src src
-COPY gradle gradle
-COPY build.gradle build.gradle
-COPY settings.gradle settings.gradle
-COPY gradlew.bat gradlew.bat
-COPY gradlew gradlew
-RUN chown -R gradle:gradle /app
-RUN ./gradlew clean build
+# Copy only the Gradle build files
+COPY build.gradle settings.gradle /app/
 
-ENTRYPOINT ["java", "-jar", "build/libs/HelloWorld1-8.2.jar"]
+# Now copy the rest of the application source code
+COPY src /app/src
+COPY users.db /app/users.db
+
+# Run the Java application
+CMD ["gradle", "run"]

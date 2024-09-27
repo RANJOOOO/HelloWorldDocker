@@ -1,26 +1,42 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
-group = 'org.example'
-version = '8.2'
+group = 'org.helloworld.main'
+version = '0.1'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    implementation 'org.xerial:sqlite-jdbc:3.42.0.0'
+    // Using JUnit BOM for version management
     testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    // Explicitly specifying version for junit-jupiter
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
 }
 
 test {
     useJUnitPlatform()
+    // Adding test logging for better feedback on test results
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
+
+application {
+    // Specifies the main class for the application
+    mainClass = 'org.helloworld.Main'
+}
+
 jar {
     manifest {
         attributes(
-                'Main-Class': 'org.example.Main'
+                'Main-Class': 'org.helloworld.Main'  // Updated package naming convention
         )
     }
 }
