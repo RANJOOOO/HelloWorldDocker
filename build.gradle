@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'com.github.johnrengelman.shadow' version '8.1.0'
 }
 
 group = 'org.helloworld.main'
@@ -24,7 +25,7 @@ test {
     useJUnitPlatform()
     // Adding test logging for better feedback on test results
     testLogging {
-        events "passed", "skipped", "failed"
+        events "passed", "skipped", "failed", "STANDARD_OUT"
     }
 }
 

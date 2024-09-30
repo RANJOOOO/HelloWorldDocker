@@ -12,15 +12,15 @@ public class Main {
             Database.connect();
             Database.initDatabase();
 
-            UserDao.addUser(new User("Huzaifa", 30));
+            UserDao.addUser(new User("Test", 30));
 
             UserDao.readUsers();
 
-            UserDao.readUserById(116);
+            UserDao.readUserById(160);
 
-            UserDao.updateUser(new User(116, "Rizwan", 40));
+            UserDao.updateUser(new User(159, "Test", 40));
 
-            UserDao.deleteUser(120);
+            UserDao.deleteUser(158);
 
         } catch (SQLException e) {
             log.severe("Database error: " + e.getMessage());
